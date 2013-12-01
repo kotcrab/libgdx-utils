@@ -19,6 +19,10 @@ package pl.kotcrab.core;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.math.Vector3;
 
+/**
+ * Class for caluclating propper touch cordinates
+ * @author Pawel Pastuszak
+ */
 public class Touch
 {
 	private static OrthographicCamera camera; // kamera
@@ -43,13 +47,6 @@ public class Touch
 	 * @param x
 	 *            pochadzace z Gdx.input.getX()
 	 */
-	public static int calcX(int x)
-	{
-		calcVector.x = x;
-		camera.unproject(calcVector);
-		return (int) calcVector.x;
-	}
-	
 	public static float calcX(float x)
 	{
 		calcVector.x = x;
@@ -62,14 +59,7 @@ public class Touch
 	 * 
 	 * @param y
 	 *            pochadzace z Gdx.input.getY()
-	 */
-	public static int calcY(int y)
-	{
-		calcVector.y = y;
-		camera.unproject(calcVector);
-		return (int) calcVector.y;
-	}
-	
+	 */	
 	public static float calcY(float y)
 	{
 		calcVector.y = y;

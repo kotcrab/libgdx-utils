@@ -1,3 +1,19 @@
+/*******************************************************************************
+ * Copyright 2013 Pawel Pastuszak
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ ******************************************************************************/
+
 package pl.kotcrab.core;
 
 import com.badlogic.gdx.Gdx;
@@ -10,6 +26,12 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.math.Rectangle;
 
+/**
+ * Class that allows drawing rectangles on game screen
+ * 
+ * @author Pawel Pastuszak
+ *
+ */
 public class RectangleDrawer extends InputAdapter
 {
 	private ShapeRenderer shapeRenderer;
@@ -79,8 +101,8 @@ public class RectangleDrawer extends InputAdapter
 		if(button == Buttons.MIDDLE)
 		{
 			drawingPointer = pointer;
-			int x = Touch.calcX(screenX);
-			int y = Touch.calcY(screenY);
+			int x = (int) Touch.calcX(screenX);
+			int y = (int) Touch.calcY(screenY);
 			currentRect = new Rectangle(x, y, 0, 0);
 			updateDrawableRect();
 		}
@@ -105,8 +127,8 @@ public class RectangleDrawer extends InputAdapter
 	{
 		if(drawingPointer == pointer)
 		{
-			int x = Touch.calcX(screenX);
-			int y = Touch.calcY(screenY);
+			int x = (int) Touch.calcX(screenX);
+			int y = (int) Touch.calcY(screenY);
 			currentRect.setSize(x - currentRect.x, y - currentRect.y);
 			updateDrawableRect();
 		}

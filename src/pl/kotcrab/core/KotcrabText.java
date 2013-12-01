@@ -16,6 +16,7 @@
 
 package pl.kotcrab.core;
 
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.BitmapFont.TextBounds;
 import com.badlogic.gdx.graphics.g2d.BitmapFontCache;
@@ -23,14 +24,10 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.math.Vector2;
 
-//TODO remove FontColor
-
 /**
- *	Klasa implementujaca tekst który mo¿na obracaæ skalowaæ, zmieniaæ kolor itp
- *  Obs³uge czcionki Distance Field (nie zmienia automaycznie shadera bo to bez sensu)
+ * Text that you can scale, rotate, change color itp. Supports distance field fonts
  * 
- * @author Pawe³ Pastuszak
- * @version 1.0
+ * @author Pawel Pastuszak
  */
 public class KotcrabText
 {
@@ -40,7 +37,7 @@ public class KotcrabText
 	
 	private float rotation;	  //rotacja
 	
-	private FontColor color;  //kolor
+	private Color color;  //kolor
 	
 	protected BitmapFontCache bitmapFontCache;
 	protected TextBounds textBounds;
@@ -69,7 +66,7 @@ public class KotcrabText
 		else
 			origin = new Vector2(0, 0); //ustawienie orgina na 0
 		
-		color = new FontColor(); //kolor
+		color = new Color(); //kolor
 		newMatrix = new Matrix4(); //matrix
 		
 		translate();
@@ -188,7 +185,7 @@ public class KotcrabText
 		translate();
 	}
 	
-	public FontColor getColor()
+	public Color getColor()
 	{
 		return color;
 	}
@@ -212,20 +209,5 @@ public class KotcrabText
 		return bitmapFontCache;
 	}
 	
-	//kolor tekstu
-	public class FontColor
-	{
-	  public float r;
-	  public float g;
-	  public float b;
-	  public float a;
-	  
-	  public FontColor()
-	  {
-		  r = 1;
-		  g = 1;
-		  b = 1;
-		  a = 0;
-	  }
-	}
+
 }

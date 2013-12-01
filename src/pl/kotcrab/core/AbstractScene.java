@@ -22,6 +22,11 @@ import com.badlogic.gdx.input.GestureDetector.GestureListener;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Disposable;
 
+/**
+ * Base class for scene system
+ * 
+ * @author Pawel Pastuszak
+ */
 public abstract class AbstractScene implements InputProcessor, GestureListener, Disposable
 {
 	public abstract void update();
