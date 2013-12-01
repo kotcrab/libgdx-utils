@@ -1,18 +1,18 @@
 /*******************************************************************************
-* Copyright 2013 Pawel Pastuszak
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-* http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-******************************************************************************/
+ * Copyright 2013 Pawel Pastuszak
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ ******************************************************************************/
 
 package pl.kotcrab.core;
 
@@ -31,79 +31,78 @@ import com.badlogic.gdx.math.Vector2;
  */
 public class KotcrabText
 {
-	private Vector2 position; //pozycja
-	private Vector2 origin;	  //origin
-	private Vector2 scale;	  //skala
+	private Vector2 position; // pozycja
+	private Vector2 origin; // origin
+	private Vector2 scale; // skala
 	
-	private float rotation;	  //rotacja
+	private float rotation; // rotacja
 	
-	private Color color;  //kolor
+	private Color color; // kolor
 	
 	protected BitmapFontCache bitmapFontCache;
 	protected TextBounds textBounds;
 	
-	protected boolean autoSetOriginToMiddle;  //automatyczne ustawianie originiu
+	protected boolean autoSetOriginToMiddle; // automatyczne ustawianie originiu
 	
-	private Matrix4  oldMatrix; //stary matrix do przeksztalcen
-	private Matrix4  newMatrix; //nowy matrix do przeksztalcen
+	private Matrix4 oldMatrix; // stary matrix do przeksztalcen
+	private Matrix4 newMatrix; // nowy matrix do przeksztalcen
 	
-	//konstruktor
+	// konstruktor
 	public KotcrabText(BitmapFont bitmapFont, String text, boolean alwaysSetOriginToMiddle, float x, float y)
 	{
-		bitmapFontCache = new BitmapFontCache(bitmapFont); //przygotowanie tekstu
+		bitmapFontCache = new BitmapFontCache(bitmapFont); // przygotowanie tekstu
 		textBounds = bitmapFontCache.setText(text, 0, 0);
 		
-		position = new Vector2(x, y); //ustawienie pozycji
-		scale = new Vector2(1, 1); //ustaiwnie skali
-		rotation = 0; //ustawienie rotacji
+		position = new Vector2(x, y); // ustawienie pozycji
+		scale = new Vector2(1, 1); // ustaiwnie skali
+		rotation = 0; // ustawienie rotacji
 		
-		autoSetOriginToMiddle = alwaysSetOriginToMiddle; //config automatycznego origina
+		autoSetOriginToMiddle = alwaysSetOriginToMiddle; // config automatycznego origina
 		
-		if (autoSetOriginToMiddle == true)
+		if(autoSetOriginToMiddle == true)
 		{
-			calculateOrigin(); //obliczenie wlasciwego origina
-		} 
+			calculateOrigin(); // obliczenie wlasciwego origina
+		}
 		else
-			origin = new Vector2(0, 0); //ustawienie orgina na 0
-		
-		color = new Color(); //kolor
-		newMatrix = new Matrix4(); //matrix
+			origin = new Vector2(0, 0); // ustawienie orgina na 0
+			
+		color = new Color(); // kolor
+		newMatrix = new Matrix4(); // matrix
 		
 		translate();
 	}
 	
-	public void draw(SpriteBatch spriteBatch) //render tekstu
-	{	
-		oldMatrix = spriteBatch.getTransformMatrix().cpy(); //kopia matrixa
+	public void draw(SpriteBatch spriteBatch) // render tekstu
+	{
+		oldMatrix = spriteBatch.getTransformMatrix().cpy(); // kopia matrixa
 		
-		spriteBatch.setTransformMatrix(newMatrix); //ustawienie nowego matrixa do tekstu
+		spriteBatch.setTransformMatrix(newMatrix); // ustawienie nowego matrixa do tekstu
 		
-		bitmapFontCache.draw(spriteBatch); //redner tekstu
+		bitmapFontCache.draw(spriteBatch); // redner tekstu
 		
-		spriteBatch.setTransformMatrix(oldMatrix); //przywrocenie matrixa
+		spriteBatch.setTransformMatrix(oldMatrix); // przywrocenie matrixa
 	}
 	
 	private void translate()
 	{
-		newMatrix.idt (); //przeksztalcenie tekstu
-		newMatrix.translate (position.x + origin.x, position.y + origin.y + bitmapFontCache.getBounds().height, 0);
-		newMatrix.rotate (0, 0, 1, rotation);
-		newMatrix.scale (scale.x, scale.y, 1);
-		newMatrix.translate (-origin.x,-origin.y, 0);
+		newMatrix.idt(); // przeksztalcenie tekstu
+		newMatrix.translate(position.x + origin.x, position.y + origin.y + bitmapFontCache.getBounds().height, 0);
+		newMatrix.rotate(0, 0, 1, rotation);
+		newMatrix.scale(scale.x, scale.y, 1);
+		newMatrix.translate(-origin.x, -origin.y, 0);
 	}
 	
-	
-	public void setText(String text) //zmiana tekstu
+	public void setText(String text) // zmiana tekstu
 	{
-		textBounds = bitmapFontCache.setText(text, 0, 0); //tak to musi byc 0 poniewaz pozycja jest ustalona podczas przeksztalanie matrixa (zobacz translate())
+		textBounds = bitmapFontCache.setText(text, 0, 0); // tak to musi byc 0 poniewaz pozycja jest ustalona podczas przeksztalanie matrixa (zobacz translate())
 		
-		if (autoSetOriginToMiddle == true) //wymagane poznowne obliczenie origina
-			calculateOrigin();
+		if(autoSetOriginToMiddle == true) // wymagane poznowne obliczenie origina
+		calculateOrigin();
 		
 		translate();
 	}
 	
-	protected void calculateOrigin() //obliczanie origina
+	protected void calculateOrigin() // obliczanie origina
 	{
 		origin = new Vector2(textBounds.width / 2, -textBounds.height / 2);
 	}
@@ -196,7 +195,7 @@ public class KotcrabText
 		color.g = g;
 		color.b = b;
 		color.a = a;
-		bitmapFontCache.setColor (color.r, color.g, color.b, color.a); //ustawienie koloru
+		bitmapFontCache.setColor(color.r, color.g, color.b, color.a); // ustawienie koloru
 	}
 	
 	public TextBounds getTextBounds()
@@ -208,6 +207,4 @@ public class KotcrabText
 	{
 		return bitmapFontCache;
 	}
-	
-
 }

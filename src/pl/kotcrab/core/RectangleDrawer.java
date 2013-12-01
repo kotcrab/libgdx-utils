@@ -30,7 +30,7 @@ import com.badlogic.gdx.math.Rectangle;
  * Class that allows drawing rectangles on game screen
  * 
  * @author Pawel Pastuszak
- *
+ * 
  */
 public class RectangleDrawer extends InputAdapter
 {
@@ -43,7 +43,6 @@ public class RectangleDrawer extends InputAdapter
 	
 	private int drawingPointer = -1;
 	
-	
 	public RectangleDrawer()
 	{
 		shapeRenderer = new ShapeRenderer();
@@ -52,7 +51,6 @@ public class RectangleDrawer extends InputAdapter
 		shapeRenderer.setProjectionMatrix(matrix);
 		
 		shapeRenderer.setColor(Color.GREEN);
-
 	}
 	
 	public void setColor(Color color)
@@ -64,11 +62,11 @@ public class RectangleDrawer extends InputAdapter
 	{
 		if(rectToDraw != null)
 		{
-		
-		shapeRenderer.begin(ShapeType.Line);
-		
-		shapeRenderer.rect(rectToDraw.getX(), rectToDraw.getY(), rectToDraw.getWidth(), rectToDraw.getHeight());
-		shapeRenderer.end();
+			
+			shapeRenderer.begin(ShapeType.Line);
+			
+			shapeRenderer.rect(rectToDraw.getX(), rectToDraw.getY(), rectToDraw.getWidth(), rectToDraw.getHeight());
+			shapeRenderer.end();
 		}
 	}
 	
@@ -80,7 +78,7 @@ public class RectangleDrawer extends InputAdapter
 			return;
 		}
 		
-		if(Gdx.input.getInputProcessor()  instanceof InputMultiplexer)
+		if(Gdx.input.getInputProcessor() instanceof InputMultiplexer)
 		{
 			InputMultiplexer mul = (InputMultiplexer) Gdx.input.getInputProcessor();
 			mul.addProcessor(this);
@@ -141,49 +139,44 @@ public class RectangleDrawer extends InputAdapter
 		return false;
 	}
 	
-
 	private void updateDrawableRect()
 	{
+		float x = currentRect.x;
+		float y = currentRect.y;
+		float width = currentRect.width;
+		float height = currentRect.height;
 		
-			float x = currentRect.x;
-			float y = currentRect.y;
-			float width = currentRect.width;
-			float height = currentRect.height;
-			
-			// Make the width and height positive, if necessary.
-			if(width < 0)
+		// Make the width and height positive, if necessary.
+		if(width < 0)
+		{
+			width = 0 - width;
+			x = x - width + 1;
+			if(x < 0)
 			{
-				width = 0 - width;
-				x = x - width + 1;
-				if(x < 0)
-				{
-					width += x;
-					x = 0;
-				}
-			}
-			if(height < 0)
-			{
-				height = 0 - height;
-				y = y - height + 1;
-				if(y < 0)
-				{
-					height += y;
-					y = 0;
-				}
-			}
-			
-
-			// Update rectToDraw after saving old value.
-			if(rectToDraw != null)
-			{
-				previousRectDrawn.set(rectToDraw.x, rectToDraw.y, rectToDraw.width, rectToDraw.height);
-				rectToDraw.set(x, y, width, height);
-			}
-			else
-			{
-				rectToDraw = new Rectangle(x, y, width, height);
+				width += x;
+				x = 0;
 			}
 		}
-	
-
+		if(height < 0)
+		{
+			height = 0 - height;
+			y = y - height + 1;
+			if(y < 0)
+			{
+				height += y;
+				y = 0;
+			}
+		}
+		
+		// Update rectToDraw after saving old value.
+		if(rectToDraw != null)
+		{
+			previousRectDrawn.set(rectToDraw.x, rectToDraw.y, rectToDraw.width, rectToDraw.height);
+			rectToDraw.set(x, y, width, height);
+		}
+		else
+		{
+			rectToDraw = new Rectangle(x, y, width, height);
+		}
+	}
 }

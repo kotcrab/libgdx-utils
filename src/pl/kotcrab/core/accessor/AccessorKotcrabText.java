@@ -26,8 +26,8 @@ public class AccessorKotcrabText implements TweenAccessor<KotcrabText>
 	public static final int ALPHA = 2;
 	public static final int ROTATION = 3;
 	public static final int SCALE_XY = 4;
-
-	//TweenAccessor implementation
+	
+	// TweenAccessor implementation
 	
 	@Override
 	public int getValues(KotcrabText target, int tweenType, float[] returnValues)

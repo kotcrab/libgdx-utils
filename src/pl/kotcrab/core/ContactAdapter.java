@@ -13,7 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  ******************************************************************************/
-
 package pl.kotcrab.core;
 
 import com.badlogic.gdx.physics.box2d.Contact;
@@ -28,29 +27,23 @@ import com.badlogic.gdx.physics.box2d.Manifold;
  */
 public class ContactAdapter implements ContactListener
 {
-	
 	@Override
 	public void beginContact(Contact contact)
 	{
-		
 	}
 	
 	@Override
 	public void endContact(Contact contact)
 	{
-		
 	}
 	
 	@Override
 	public void preSolve(Contact contact, Manifold oldManifold)
 	{
-		
 	}
 	
 	@Override
 	public void postSolve(Contact contact, ContactImpulse impulse)
 	{
-		
 	}
-	
 }

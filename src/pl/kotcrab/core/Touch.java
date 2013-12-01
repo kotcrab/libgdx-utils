@@ -21,6 +21,7 @@ import com.badlogic.gdx.math.Vector3;
 
 /**
  * Class for caluclating propper touch cordinates
+ * 
  * @author Pawel Pastuszak
  */
 public class Touch
@@ -59,7 +60,7 @@ public class Touch
 	 * 
 	 * @param y
 	 *            pochadzace z Gdx.input.getY()
-	 */	
+	 */
 	public static float calcY(float y)
 	{
 		calcVector.y = y;

@@ -13,7 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  ******************************************************************************/
-
 package pl.kotcrab.core;
 
 import com.badlogic.gdx.InputProcessor;
@@ -34,7 +33,7 @@ public abstract class AbstractScene implements InputProcessor, GestureListener, 
 	public abstract void render(SpriteBatch batch);
 	
 	public abstract void dispose();
-
+	
 	@Override
 	public boolean keyDown(int keycode)
 	{
@@ -124,12 +123,10 @@ public abstract class AbstractScene implements InputProcessor, GestureListener, 
 	{
 		return false;
 	}
-
+	
 	@Override
 	public boolean panStop(float x, float y, int pointer, int button)
 	{
 		return false;
 	}
-
-	
 }

@@ -13,14 +13,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  ******************************************************************************/
-
 package pl.kotcrab.core;
 
 import com.badlogic.gdx.graphics.Color;
 
 public class ColorUtils
 {
-
 	/**
 	 * Converts HSV color sytem to RGB
 	 * 
@@ -37,7 +35,7 @@ public class ColorUtils
 		s /= 100;
 		v /= 100;
 		
-		h /= 60; 
+		h /= 60;
 		i = (int) Math.floor(h);
 		f = h - i;
 		p = v * (1 - s);
@@ -76,8 +74,6 @@ public class ColorUtils
 			b = Math.round(255 * q);
 		}
 		
-		return new Color(r/255.0f, g/255.0f, b/255.0f, 1);
+		return new Color(r / 255.0f, g / 255.0f, b / 255.0f, 1);
 	}
-	
-
 }

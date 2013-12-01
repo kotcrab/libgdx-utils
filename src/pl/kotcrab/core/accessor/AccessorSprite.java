@@ -24,14 +24,14 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 
 public class AccessorSprite implements TweenAccessor<Sprite>
 {
-		
+	
 	public static final int POSITION_X = 1;
 	public static final int POSITION_Y = 2;
 	public static final int POSITION_XY = 3;
 	public static final int ALPHA = 4;
 	public static final int SCALE = 5;
 	
-	//TweenAccessor implementation
+	// TweenAccessor implementation
 	
 	@Override
 	public int getValues(Sprite target, int tweenType, float[] returnValues)
