@@ -119,7 +119,7 @@ public class RectangleDrawer extends InputAdapter
 		if(drawingPointer == pointer)
 		{
 			drawingPointer = -1;
-			Gdx.app.log("RectangleDrawer", String.format("X:%s Y:%s Width:%s Height:%s", rectToDraw.x, rectToDraw.y, rectToDraw.width, rectToDraw.height));
+			Gdx.app.log("RectangleDrawer", "X:" + rectToDraw.x + " Y:" + rectToDraw.y + " Width:" + rectToDraw.width + " Height:" + rectToDraw.height);
 		}
 		
 		return false;
