@@ -16,21 +16,31 @@
 
 package pl.kotcrab.core;
 
-import java.text.DecimalFormat;
 import java.util.Arrays;
 
 public class NumberUtils
 {
+	// works with gwt
 	public static String intToString(int num, int digits)
 	{
-		assert digits > 0 : "Invalid number of digits";
-		
-		// create variable length array of zeros
 		char[] zeros = new char[digits];
 		Arrays.fill(zeros, '0');
-		// format number as String
-		DecimalFormat df = new DecimalFormat(String.valueOf(zeros));
 		
-		return df.format(num);
+		return (new String(zeros) + num).substring(String.valueOf(num).length());
 	}
+
+// better but don't work with gwt
+	//WARNING: DECIMALFORMAT SOMETIMES WAS CREATING NATIVE ERRORS (TESTED ON NEXUS 4) THAT CRASHED DEVICE DON"T USE IT
+//	 public static String intToString(int num, int digits)
+//	 {
+//	 assert digits > 0 : "Invalid number of digits";
+//	
+//	 // create variable length array of zeros
+//	 char[] zeros = new char[digits];
+//	 Arrays.fill(zeros, '0');
+//	 // format number as String
+//	 DecimalFormat df = new DecimalFormat(String.valueOf(zeros));
+//	
+//	 return df.format(num);
+//	 }
 }
