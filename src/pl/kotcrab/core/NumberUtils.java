@@ -30,7 +30,7 @@ public class NumberUtils
 	}
 
 // better but don't work with gwt
-	//WARNING: DECIMALFORMAT SOMETIMES WAS CREATING NATIVE ERRORS (TESTED ON NEXUS 4) THAT CRASHED DEVICE DON"T USE IT
+	//WARNING: DECIMALFORMAT SOMETIMES WAS CREATING NATIVE ERRORS (TESTED ON NEXUS 4) THAT CRASHED DEVICE DON'T USE IT
 //	 public static String intToString(int num, int digits)
 //	 {
 //	 assert digits > 0 : "Invalid number of digits";
