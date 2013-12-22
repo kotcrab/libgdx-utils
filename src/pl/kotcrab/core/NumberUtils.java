@@ -20,8 +20,19 @@ import java.util.Arrays;
 
 public class NumberUtils
 {
-	// works with gwt
-	public static String intToString(int num, int digits)
+	/**
+	 * Converts int to string.
+	 * 
+	 * Examples:
+	 * intToString(1, 4) returns 0001
+	 * intToString(999, 5) returns 00999
+	 * intToString(123, 2) returns 123
+	 * 
+	 * @param num Number that you want to convert
+	 * @param digits How many digit output numer should have
+	 * @return Converted number as string
+	 */
+	public static String intToString(int num, int digits) // works with gwt
 	{
 		char[] zeros = new char[digits];
 		Arrays.fill(zeros, '0');
@@ -29,18 +40,18 @@ public class NumberUtils
 		return (new String(zeros) + num).substring(String.valueOf(num).length());
 	}
 
-// better but don't work with gwt
-	//WARNING: DECIMALFORMAT SOMETIMES WAS CREATING NATIVE ERRORS (TESTED ON NEXUS 4) THAT CRASHED DEVICE DON'T USE IT
-//	 public static String intToString(int num, int digits)
-//	 {
-//	 assert digits > 0 : "Invalid number of digits";
-//	
-//	 // create variable length array of zeros
-//	 char[] zeros = new char[digits];
-//	 Arrays.fill(zeros, '0');
-//	 // format number as String
-//	 DecimalFormat df = new DecimalFormat(String.valueOf(zeros));
-//	
-//	 return df.format(num);
-//	 }
+	// better but don't work with gwt
+	//WARNING: DECIMALFORMAT SOMETIMES WAS CREATING NATIVE ERRORS (ON NEXUS 4) THAT CRASHED DEVICE DON'T USE IT
+	//	 public static String intToString(int num, int digits)
+	//	 {
+	//	 assert digits > 0 : "Invalid number of digits";
+	//	
+	//	 // create variable length array of zeros
+	//	 char[] zeros = new char[digits];
+	//	 Arrays.fill(zeros, '0');
+	//	 // format number as String
+	//	 DecimalFormat df = new DecimalFormat(String.valueOf(zeros));
+	//	
+	//	 return df.format(num);
+	//	 }
 }

@@ -1,6 +1,22 @@
-//	Copyright (c) 2012-2013, Pawe³ Pastuszak
+/*******************************************************************************
+ * Copyright 2012-2013 Pawel Pastuszak
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ ******************************************************************************/
 
 package pl.kotcrab.core;
+
+import pl.kotcrab.tests.AnalogTester;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Sprite;
@@ -9,6 +25,12 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.utils.Disposable;
 
+/**
+ * Libgdx analog implementation. Max number of analogs is 5, increase pointer tab size to support more. Analog must be diposed.
+ * 
+ * @author Pawel Pastuszak
+ * @see AnalogTester
+ */
 public class Analog implements Disposable
 {
 	private static final int INVALID_POINTER = 15; // id pointera ktory teoretycznie jest bledny(urzadzanie nie obsluga wiecej niz 10(narazie) a sam android nie wiecej niz 20(przynajmniej w 2.3.5))
@@ -107,7 +129,7 @@ public class Analog implements Disposable
 		}
 	}
 	
-	protected void onUpdateControlKnob(float pRelativeX, float pRelativeY)
+	private void onUpdateControlKnob(float pRelativeX, float pRelativeY)
 	{
 		float x = base.getX() + base.getWidth() / 2 - knob.getWidth() / 2 + pRelativeX * base.getWidth() * base.getScaleX();
 		float y = base.getY() + base.getHeight() / 2 - knob.getHeight() / 2 + pRelativeY * base.getHeight() * base.getScaleY();
@@ -122,7 +144,6 @@ public class Analog implements Disposable
 	public void dispose()
 	{
 		if(updating == true) pointerTab[activePointer] = false;
-		
 	}
 	
 	public boolean isUpdating()

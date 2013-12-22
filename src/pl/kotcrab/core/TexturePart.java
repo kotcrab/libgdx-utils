@@ -21,6 +21,11 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 
+/**
+ * Allow to draw a part of texture
+ * @author Pawel Pastuszak
+ *
+ */
 public class TexturePart {
         Texture tex;
         Vector2 position;

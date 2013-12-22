@@ -20,8 +20,6 @@ import aurelienribon.tweenengine.TweenAccessor;
 
 import com.badlogic.gdx.graphics.g2d.Sprite;
 
-//For Universal Tween Engine
-
 public class AccessorSprite implements TweenAccessor<Sprite>
 {
 	

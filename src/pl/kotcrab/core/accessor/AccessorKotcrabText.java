@@ -18,8 +18,6 @@ package pl.kotcrab.core.accessor;
 import pl.kotcrab.core.KotcrabText;
 import aurelienribon.tweenengine.TweenAccessor;
 
-//For Universal Tween Engine
-
 public class AccessorKotcrabText implements TweenAccessor<KotcrabText>
 {
 	public static final int POSITION_XY = 1;
