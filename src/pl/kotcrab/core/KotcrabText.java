@@ -207,4 +207,10 @@ public class KotcrabText
 	{
 		return bitmapFontCache;
 	}
+	
+	public void center(int scrWidth)
+	{
+		position.x = (scrWidth - textBounds.width * scale.x) / 2;
+		translate();
+	}
 }
