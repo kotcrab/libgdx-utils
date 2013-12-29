@@ -151,21 +151,11 @@ public class RectangleDrawer extends InputAdapter
 		{
 			width = 0 - width;
 			x = x - width + 1;
-			if(x < 0)
-			{
-				width += x;
-				x = 0;
-			}
 		}
 		if(height < 0)
 		{
 			height = 0 - height;
 			y = y - height + 1;
-			if(y < 0)
-			{
-				height += y;
-				y = 0;
-			}
 		}
 		
 		// Update rectToDraw after saving old value.
