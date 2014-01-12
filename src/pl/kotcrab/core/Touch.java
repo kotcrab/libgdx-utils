@@ -26,27 +26,29 @@ import com.badlogic.gdx.math.Vector3;
  */
 public class Touch
 {
-	private static OrthographicCamera camera; // kamera
-	private static Vector3 calcVector; // wektor do obliczen
+	private static OrthographicCamera camera;
+	private static OrthographicCamera rawCamera;
+	private static Vector3 calcVector;
 	
-	/** Przygotowywuje klase do uzytku */
+	/** Prepares class for use*/
 	public static void setCamera(OrthographicCamera camera)
 	{
 		Touch.camera = camera;
+		Touch.rawCamera = new OrthographicCamera(camera.viewportWidth, camera.viewportHeight);
 		calcVector = new Vector3(0, 0, 0);
 	}
 	
-	/** Zwaraca kamere */
+	/** Return camera */
 	public static OrthographicCamera getCamera()
 	{
 		return camera;
 	}
 	
 	/**
-	 * Zwaraca poprawne miejsce dotyku pobrane przy ucyzciu Gdx.input.getX() Aby uzywac nalezy wyowalc jednorazowo setCamera()
-	 * 
+	 * Return proper touch posistion using provided camera
+	 * Call the {@link #setCamera(OrthographicCamera camera) setCamera} method before using.
 	 * @param x
-	 *            pochadzace z Gdx.input.getX()
+	 *            form Gdx.input.getX() or event method
 	 */
 	public static float calcX(float x)
 	{
@@ -56,15 +58,41 @@ public class Touch
 	}
 	
 	/**
-	 * Zwaraca poprawne miejsce dotyku pobrane przy ucyzciu Gdx.input.getY() Aby uzywac nalezy wyowalc jednorazowo setCamera()
-	 * 
+	 * Return proper touch posistion using provided camera
+	 * Call the {@link #setCamera(OrthographicCamera camera) setCamera} method before using.
 	 * @param y
-	 *            pochadzace z Gdx.input.getY()
+	 *            form Gdx.input.getY() or event method
 	 */
 	public static float calcY(float y)
 	{
 		calcVector.y = y;
 		camera.unproject(calcVector);
+		return calcVector.y;
+	}
+	
+	/**
+	 * Return proper touch posistion using provided camera. This ignores camera rotation or zoom, this can be used for HUD and menus
+	 * Call the {@link #setCamera(OrthographicCamera camera) setCamera} method before using.
+	 * @param x
+	 *            form Gdx.input.getX() or event method
+	 */
+	public static float calcRawX(float x)
+	{
+		calcVector.x = x;
+		rawCamera.unproject(calcVector);
+		return calcVector.x;
+	}
+	
+	/**
+	 * Return proper touch posistion using provided camera. This ignores camera rotation or zoom, this can be used for HUD and menus
+	 * Call the {@link #setCamera(OrthographicCamera camera) setCamera} method before using.
+	 * @param y
+	 *            form Gdx.input.getY() or event method
+	 */
+	public static float calcRawY(float y)
+	{
+		calcVector.y = y;
+		rawCamera.unproject(calcVector);
 		return calcVector.y;
 	}
 	
