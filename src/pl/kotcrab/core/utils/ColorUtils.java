@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  ******************************************************************************/
-package pl.kotcrab.core;
+package pl.kotcrab.core.utils;
 
 import com.badlogic.gdx.graphics.Color;
 

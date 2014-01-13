@@ -14,7 +14,7 @@
  * limitations under the License.
  ******************************************************************************/
 
-package pl.kotcrab.core;
+package pl.kotcrab.core.utils;
 
 import java.util.Arrays;
 
