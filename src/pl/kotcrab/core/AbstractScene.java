@@ -32,8 +32,6 @@ public abstract class AbstractScene implements InputProcessor, GestureListener, 
 	
 	public abstract void render(SpriteBatch batch);
 	
-	public abstract void dispose();
-	
 	@Override
 	public boolean keyDown(int keycode)
 	{
