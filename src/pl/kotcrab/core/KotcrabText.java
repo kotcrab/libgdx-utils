@@ -27,9 +27,8 @@ import com.badlogic.gdx.math.Rectangle;
 
 /** Text that you can scale, rotate, change color itp. Supports distance field fonts
  * 
- * @author Pawel Pastuszak 
- * @version 1.1 
- */
+ * @author Pawel Pastuszak
+ * @version 1.1 */
 public class KotcrabText {
 	private float x, y;
 	private float originX = 0, originY = 0;
@@ -58,7 +57,6 @@ public class KotcrabText {
 		textBounds = bitmapFontCache.setText(text, 0, 0);
 
 		if (autoSetOriginToCenter == true) setOriginCenter();
-
 
 		translate();
 	}

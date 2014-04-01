@@ -13,36 +13,32 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  ******************************************************************************/
+
 package pl.kotcrab.core.utils;
 
 import com.badlogic.gdx.graphics.Color;
 
-public class ColorUtils
-{
-	/**
-	 * Converts HSV color sytem to RGB
+public class ColorUtils {
+	/** Converts HSV color sytem to RGB
 	 * 
-	 * @return RGB values in Libgdx Color class
-	 */
-	public static Color HSV_to_RGB(float h, float s, float v)
-	{
+	 * @return RGB values in Libgdx Color class */
+	public static Color HSV_to_RGB (float h, float s, float v) {
 		int r, g, b;
 		int i;
 		float f, p, q, t;
-		h = (float) Math.max(0.0, Math.min(360.0, h));
-		s = (float) Math.max(0.0, Math.min(100.0, s));
-		v = (float) Math.max(0.0, Math.min(100.0, v));
+		h = (float)Math.max(0.0, Math.min(360.0, h));
+		s = (float)Math.max(0.0, Math.min(100.0, s));
+		v = (float)Math.max(0.0, Math.min(100.0, v));
 		s /= 100;
 		v /= 100;
-		
+
 		h /= 60;
-		i = (int) Math.floor(h);
+		i = (int)Math.floor(h);
 		f = h - i;
 		p = v * (1 - s);
 		q = v * (1 - s * f);
 		t = v * (1 - s * (1 - f));
-		switch (i)
-		{
+		switch (i) {
 		case 0:
 			r = Math.round(255 * v);
 			g = Math.round(255 * t);
@@ -68,12 +64,12 @@ public class ColorUtils
 			g = Math.round(255 * p);
 			b = Math.round(255 * v);
 			break;
-		default: // case 5:
+		default:
 			r = Math.round(255 * v);
 			g = Math.round(255 * p);
 			b = Math.round(255 * q);
 		}
-		
+
 		return new Color(r / 255.0f, g / 255.0f, b / 255.0f, 1);
 	}
 }

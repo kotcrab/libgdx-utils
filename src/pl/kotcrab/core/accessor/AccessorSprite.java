@@ -20,22 +20,19 @@ import aurelienribon.tweenengine.TweenAccessor;
 
 import com.badlogic.gdx.graphics.g2d.Sprite;
 
-public class AccessorSprite implements TweenAccessor<Sprite>
-{
-	
+public class AccessorSprite implements TweenAccessor<Sprite> {
+
 	public static final int POSITION_X = 1;
 	public static final int POSITION_Y = 2;
 	public static final int POSITION_XY = 3;
 	public static final int ALPHA = 4;
 	public static final int SCALE = 5;
-	
+
 	// TweenAccessor implementation
-	
+
 	@Override
-	public int getValues(Sprite target, int tweenType, float[] returnValues)
-	{
-		switch (tweenType)
-		{
+	public int getValues (Sprite target, int tweenType, float[] returnValues) {
+		switch (tweenType) {
 		case POSITION_X:
 			returnValues[0] = target.getX();
 			return 1;
@@ -57,12 +54,10 @@ public class AccessorSprite implements TweenAccessor<Sprite>
 			return -1;
 		}
 	}
-	
+
 	@Override
-	public void setValues(Sprite target, int tweenType, float[] newValues)
-	{
-		switch (tweenType)
-		{
+	public void setValues (Sprite target, int tweenType, float[] newValues) {
+		switch (tweenType) {
 		case POSITION_X:
 			target.setX(newValues[0]);
 			break;
@@ -84,5 +79,5 @@ public class AccessorSprite implements TweenAccessor<Sprite>
 			break;
 		}
 	}
-	
+
 }

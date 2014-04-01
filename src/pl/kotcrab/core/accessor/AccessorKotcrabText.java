@@ -13,28 +13,26 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  ******************************************************************************/
+
 package pl.kotcrab.core.accessor;
 
 import pl.kotcrab.core.KotcrabText;
 import aurelienribon.tweenengine.TweenAccessor;
 
-public class AccessorKotcrabText implements TweenAccessor<KotcrabText>
-{
+public class AccessorKotcrabText implements TweenAccessor<KotcrabText> {
 	public static final int POSITION_XY = 1;
 	public static final int ALPHA = 2;
 	public static final int ROTATION = 3;
 	public static final int SCALE_XY = 4;
-	
+
 	// TweenAccessor implementation
-	
+
 	@Override
-	public int getValues(KotcrabText target, int tweenType, float[] returnValues)
-	{
-		switch (tweenType)
-		{
+	public int getValues (KotcrabText target, int tweenType, float[] returnValues) {
+		switch (tweenType) {
 		case POSITION_XY:
-			returnValues[0] = target.getPosition().x;
-			returnValues[1] = target.getPosition().y;
+			returnValues[0] = target.getX();
+			returnValues[1] = target.getY();
 			return 2;
 		case ALPHA:
 			returnValues[0] = target.getColor().a;
@@ -43,20 +41,18 @@ public class AccessorKotcrabText implements TweenAccessor<KotcrabText>
 			returnValues[0] = target.getRotation();
 			return 1;
 		case SCALE_XY:
-			returnValues[0] = target.getScale().x;
-			returnValues[1] = target.getScale().y;
+			returnValues[0] = target.getScaleX();
+			returnValues[1] = target.getScaleY();
 			return 2;
 		default:
 			assert false;
 			return -1;
 		}
 	}
-	
+
 	@Override
-	public void setValues(KotcrabText target, int tweenType, float[] newValues)
-	{
-		switch (tweenType)
-		{
+	public void setValues (KotcrabText target, int tweenType, float[] newValues) {
+		switch (tweenType) {
 		case POSITION_XY:
 			target.setPosition(newValues[0], newValues[1]);
 			break;
