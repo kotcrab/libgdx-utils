@@ -66,7 +66,7 @@ class TextTestApp implements ApplicationListener {
 		wrappedText = new Text(arial);
 
 		text.setText("Simple text");
-		multilineText.setMultiLineText("text\nthat\ncan\nbe\nin\nmmultiple\nlines");
+		multilineText.setMultiLineText("text\nthat\ncan\nbe\nin\nmultiple\nlines");
 		wrappedText.setWrappedText("this is quite long text that will be automatically wrapped to specified width. it may contain newlines (\\n) \n\n"
 			+ "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla dictum est at vehicula euismod. "
 			+ "Proin varius dui augue, et bibendum libero faucibus in. Vivamus feugiat sollicitudin vehicula.", 200);
