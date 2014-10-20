@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright 2014 Pawel Pastuszak
+ * Copyright 2013 Pawel Pastuszak
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,19 +14,30 @@
  * limitations under the License.
  ******************************************************************************/
 
-package pl.kotcrab.libgdxutils.util;
+package pl.kotcrab.libgdx.util;
 
-import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.physics.box2d.Contact;
+import com.badlogic.gdx.physics.box2d.ContactImpulse;
+import com.badlogic.gdx.physics.box2d.ContactListener;
+import com.badlogic.gdx.physics.box2d.Manifold;
 
-public class CameraUtils {
-	public static Rectangle calcCameraBoundingRectangle (OrthographicCamera camera) {
-		float cameraWidth = camera.viewportWidth * camera.zoom;
-		float cameraHeight = camera.viewportHeight * camera.zoom;
+/** Empty implementation of ContactListener (box2d)
+ * 
+ * @author Pawel Pastuszak */
+public class ContactAdapter implements ContactListener {
+	@Override
+	public void beginContact (Contact contact) {
+	}
 
-		float cameraX = camera.position.x - cameraWidth / 2;
-		float cameraY = camera.position.y - cameraHeight / 2;
+	@Override
+	public void endContact (Contact contact) {
+	}
 
-		return new Rectangle(cameraX, cameraY, cameraWidth, cameraHeight);
+	@Override
+	public void preSolve (Contact contact, Manifold oldManifold) {
+	}
+
+	@Override
+	public void postSolve (Contact contact, ContactImpulse impulse) {
 	}
 }

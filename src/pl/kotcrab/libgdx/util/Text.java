@@ -14,7 +14,7 @@
  * limitations under the License.
  ******************************************************************************/
 
-package pl.kotcrab.libgdxutils;
+package pl.kotcrab.libgdx.util;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;

@@ -14,7 +14,7 @@
  * limitations under the License.
  ******************************************************************************/
 
-package pl.kotcrab.libgdxutils.util;
+package pl.kotcrab.libgdx.util;
 
 import java.util.Arrays;
 

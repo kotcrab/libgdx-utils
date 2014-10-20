@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright 2013 Pawel Pastuszak
+ * Copyright 2013-2014 Pawel Pastuszak
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,31 +14,20 @@
  * limitations under the License.
  ******************************************************************************/
 
-package pl.kotcrab.libgdxutils.accessor;
+package pl.kotcrab.libgdx.util.accessor;
 
+import pl.kotcrab.libgdx.util.Text;
 import aurelienribon.tweenengine.TweenAccessor;
 
-import com.badlogic.gdx.graphics.g2d.Sprite;
-
-public class AccessorSprite implements TweenAccessor<Sprite> {
-
-	public static final int POSITION_X = 1;
-	public static final int POSITION_Y = 2;
-	public static final int POSITION_XY = 3;
-	public static final int ALPHA = 4;
-	public static final int SCALE = 5;
-
-	// TweenAccessor implementation
+public class AccessorText implements TweenAccessor<Text> {
+	public static final int POSITION_XY = 1;
+	public static final int ALPHA = 2;
+	public static final int ROTATION = 3;
+	public static final int SCALE_XY = 4;
 
 	@Override
-	public int getValues (Sprite target, int tweenType, float[] returnValues) {
+	public int getValues (Text target, int tweenType, float[] returnValues) {
 		switch (tweenType) {
-		case POSITION_X:
-			returnValues[0] = target.getX();
-			return 1;
-		case POSITION_Y:
-			returnValues[0] = target.getY();
-			return 1;
 		case POSITION_XY:
 			returnValues[0] = target.getX();
 			returnValues[1] = target.getY();
@@ -46,9 +35,13 @@ public class AccessorSprite implements TweenAccessor<Sprite> {
 		case ALPHA:
 			returnValues[0] = target.getColor().a;
 			return 1;
-		case SCALE:
-			returnValues[0] = target.getScaleX();
+		case ROTATION:
+			returnValues[0] = target.getRotation();
 			return 1;
+		case SCALE_XY:
+			returnValues[0] = target.getScaleX();
+			returnValues[1] = target.getScaleY();
+			return 2;
 		default:
 			assert false;
 			return -1;
@@ -56,28 +49,20 @@ public class AccessorSprite implements TweenAccessor<Sprite> {
 	}
 
 	@Override
-	public void setValues (Sprite target, int tweenType, float[] newValues) {
+	public void setValues (Text target, int tweenType, float[] newValues) {
 		switch (tweenType) {
-		case POSITION_X:
-			target.setX(newValues[0]);
-			break;
-		case POSITION_Y:
-			target.setY(newValues[0]);
-			break;
 		case POSITION_XY:
-			target.setX(newValues[0]);
-			target.setY(newValues[1]);
+			target.setPosition(newValues[0], newValues[1]);
 			break;
 		case ALPHA:
-			target.setColor(1, 1, 1, newValues[0]);
-			break;
-		case SCALE:
-			target.setScale(newValues[0]);
-			break;
+			target.setColor(target.getColor().r, target.getColor().g, target.getColor().b, newValues[0]);
+		case ROTATION:
+			target.setRotation(newValues[0]);
+		case SCALE_XY:
+			target.setScale(newValues[0], newValues[1]);
 		default:
 			assert false;
 			break;
 		}
 	}
-
 }

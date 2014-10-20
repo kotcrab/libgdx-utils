@@ -14,40 +14,43 @@
  * limitations under the License.
  ******************************************************************************/
 
-package pl.kotcrab.libgdxutils.tests;
+package pl.kotcrab.libgdx.util.test;
 
-import pl.kotcrab.libgdxutils.Pointer;
-import pl.kotcrab.libgdxutils.Text;
+import pl.kotcrab.libgdx.util.Pointer;
+import pl.kotcrab.libgdx.util.Text;
 
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
+import com.badlogic.gdx.graphics.FPSLogger;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.MathUtils;
+import com.badlogic.gdx.utils.Array;
 
-public class TextTest {
+public class TextPerfomenceTest {
 	public static void main (String[] args) {
 		LwjglApplicationConfiguration cfg = new LwjglApplicationConfiguration();
 		cfg.title = "TextTester";
 		cfg.width = 800;
 		cfg.height = 480;
 
-		new LwjglApplication(new TextTestApp(), cfg);
+		new LwjglApplication(new TextPerfomenceTestApp(), cfg);
 	}
 }
 
-class TextTestApp implements ApplicationListener {
+class TextPerfomenceTestApp implements ApplicationListener {
 	private SpriteBatch batch;
 	private OrthographicCamera camera;
 
 	private BitmapFont arial;
 
-	private Text text;
-	private Text multilineText;
-	private Text wrappedText;
+	private Array<Text> texts = new Array<Text>();
+	
+	private FPSLogger logger = new FPSLogger();
 
 	@Override
 	public void create () {
@@ -61,19 +64,11 @@ class TextTestApp implements ApplicationListener {
 
 		arial = new BitmapFont(Gdx.files.internal("assets/font/arial.fnt"));
 
-		text = new Text(arial);
-		multilineText = new Text(arial);
-		wrappedText = new Text(arial);
-
-		text.setText("Simple text");
-		multilineText.setMultiLineText("text\nthat\ncan\nbe\nin\nmultiple\nlines");
-		wrappedText.setWrappedText("this is quite long text that will be automatically wrapped to specified width. it may contain newlines (\\n) \n\n"
-			+ "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla dictum est at vehicula euismod. "
-			+ "Proin varius dui augue, et bibendum libero faucibus in. Vivamus feugiat sollicitudin vehicula.", 200);
+		for(int i = 0; i < 80; i++)
+			for (int j = 0; j < 48; j++)
+				texts.add(new Text(arial, String.valueOf(MathUtils.random(9)), i * 10, j * 10));
 		
-		text.setPosition(0, 0);
-		multilineText.setPosition(100, 0);
-		wrappedText.setPosition(200, 0);
+		System.out.println(texts.size);
 	}
 
 	@Override
@@ -82,10 +77,11 @@ class TextTestApp implements ApplicationListener {
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
 		batch.begin();
-		text.draw(batch);
-		multilineText.draw(batch);
-		wrappedText.draw(batch);
+		for (Text t : texts)
+			t.draw(batch);
 		batch.end();
+		
+		logger.log();
 	}
 
 	@Override
@@ -93,7 +89,6 @@ class TextTestApp implements ApplicationListener {
 		arial.dispose();
 	}
 
-	// @formatter:off
 	@Override
 	public void pause () {
 	}
@@ -105,6 +100,5 @@ class TextTestApp implements ApplicationListener {
 	@Override
 	public void resize (int width, int height) {
 	}
-	// @formatter:on
 
 }

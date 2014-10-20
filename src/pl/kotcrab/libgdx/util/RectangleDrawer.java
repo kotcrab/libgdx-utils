@@ -14,9 +14,7 @@
  * limitations under the License.
  ******************************************************************************/
 
-package pl.kotcrab.libgdxutils.util;
-
-import pl.kotcrab.libgdxutils.Pointer;
+package pl.kotcrab.libgdx.util;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputMultiplexer;

@@ -14,7 +14,7 @@
  * limitations under the License.
  ******************************************************************************/
 
-package pl.kotcrab.libgdxutils;
+package pl.kotcrab.libgdx.util;
 
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;

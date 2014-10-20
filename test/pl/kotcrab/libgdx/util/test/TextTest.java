@@ -14,10 +14,10 @@
  * limitations under the License.
  ******************************************************************************/
 
-package pl.kotcrab.libgdxutils.tests;
+package pl.kotcrab.libgdx.util.test;
 
-import pl.kotcrab.libgdxutils.Analog;
-import pl.kotcrab.libgdxutils.Pointer;
+import pl.kotcrab.libgdx.util.Pointer;
+import pl.kotcrab.libgdx.util.Text;
 
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Gdx;
@@ -25,33 +25,29 @@ import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
-import com.badlogic.gdx.graphics.g2d.BitmapFontCache;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
-public class AnalogTester {
+public class TextTest {
 	public static void main (String[] args) {
 		LwjglApplicationConfiguration cfg = new LwjglApplicationConfiguration();
-		cfg.title = "AnalogTester";
+		cfg.title = "TextTester";
 		cfg.width = 800;
 		cfg.height = 480;
 
-		new LwjglApplication(new AnalogTestApp(), cfg);
+		new LwjglApplication(new TextTestApp(), cfg);
 	}
 }
 
-class AnalogTestApp implements ApplicationListener {
+class TextTestApp implements ApplicationListener {
 	private SpriteBatch batch;
 	private OrthographicCamera camera;
 
-	private Texture analogBase;
-	private Texture analogKnob;
 	private BitmapFont arial;
 
-	private Analog leftAnalog;
-	private Analog rightAnalog;
+	private Text text;
+	private Text multilineText;
+	private Text wrappedText;
 
 	@Override
 	public void create () {
@@ -63,12 +59,21 @@ class AnalogTestApp implements ApplicationListener {
 		Pointer.setCamera(camera);
 		batch.setProjectionMatrix(camera.combined);
 
-		analogBase = new Texture(Gdx.files.internal("assets/gfx/analog_base.png"));
-		analogKnob = new Texture(Gdx.files.internal("assets/gfx/analog_knob.png"));
 		arial = new BitmapFont(Gdx.files.internal("assets/font/arial.fnt"));
 
-		leftAnalog = new Analog(new TextureRegion(analogBase), new TextureRegion(analogKnob), 50, 50);
-		rightAnalog = new Analog(new TextureRegion(analogBase), new TextureRegion(analogKnob), 550, 50);
+		text = new Text(arial);
+		multilineText = new Text(arial);
+		wrappedText = new Text(arial);
+
+		text.setText("Simple text");
+		multilineText.setMultiLineText("text\nthat\ncan\nbe\nin\nmultiple\nlines");
+		wrappedText.setWrappedText("this is quite long text that will be automatically wrapped to specified width. it may contain newlines (\\n) \n\n"
+			+ "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla dictum est at vehicula euismod. "
+			+ "Proin varius dui augue, et bibendum libero faucibus in. Vivamus feugiat sollicitudin vehicula.", 200);
+		
+		text.setPosition(0, 0);
+		multilineText.setPosition(100, 0);
+		wrappedText.setPosition(200, 0);
 	}
 
 	@Override
@@ -76,26 +81,16 @@ class AnalogTestApp implements ApplicationListener {
 		Gdx.gl.glClearColor(0, 0, 0, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
-		leftAnalog.update();
-		rightAnalog.update();
-
 		batch.begin();
-		arial.draw(batch, "LeftAnalog: X:" + (int)leftAnalog.getKnobXLocal() + " Y:" + (int)leftAnalog.getKnobYLocal(), 10, 450);
-		arial.draw(batch, "RightAnalog: X:" + (int)rightAnalog.getKnobXLocal() + " Y:" + (int)rightAnalog.getKnobYLocal(), 10, 430);
-
-		leftAnalog.render(batch);
-		rightAnalog.render(batch);
+		text.draw(batch);
+		multilineText.draw(batch);
+		wrappedText.draw(batch);
 		batch.end();
 	}
 
 	@Override
 	public void dispose () {
-		analogBase.dispose();
-		analogKnob.dispose();
 		arial.dispose();
-
-		leftAnalog.dispose();
-		rightAnalog.dispose();
 	}
 
 	// @formatter:off
