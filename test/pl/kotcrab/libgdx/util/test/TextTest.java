@@ -67,10 +67,11 @@ class TextTestApp implements ApplicationListener {
 
 		text.setText("Simple text");
 		multilineText.setMultiLineText("text\nthat\ncan\nbe\nin\nmultiple\nlines");
-		wrappedText.setWrappedText("this is quite long text that will be automatically wrapped to specified width. it may contain newlines (\\n) \n\n"
-			+ "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla dictum est at vehicula euismod. "
-			+ "Proin varius dui augue, et bibendum libero faucibus in. Vivamus feugiat sollicitudin vehicula.", 200);
-		
+		wrappedText.setWrappedText(
+			"this is quite long text that will be automatically wrapped to specified width. it may contain newlines (\\n) \n\n"
+				+ "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla dictum est at vehicula euismod. "
+				+ "Proin varius dui augue, et bibendum libero faucibus in. Vivamus feugiat sollicitudin vehicula.", 200);
+
 		text.setPosition(0, 0);
 		multilineText.setPosition(100, 0);
 		wrappedText.setPosition(200, 0);

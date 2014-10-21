@@ -16,6 +16,8 @@
 
 package pl.kotcrab.libgdx.util;
 
+import pl.kotcrab.libgdx.util.test.AnalogTester;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;

@@ -49,7 +49,7 @@ class TextPerfomenceTestApp implements ApplicationListener {
 	private BitmapFont arial;
 
 	private Array<Text> texts = new Array<Text>();
-	
+
 	private FPSLogger logger = new FPSLogger();
 
 	@Override
@@ -64,10 +64,10 @@ class TextPerfomenceTestApp implements ApplicationListener {
 
 		arial = new BitmapFont(Gdx.files.internal("assets/font/arial.fnt"));
 
-		for(int i = 0; i < 80; i++)
+		for (int i = 0; i < 80; i++)
 			for (int j = 0; j < 48; j++)
 				texts.add(new Text(arial, String.valueOf(MathUtils.random(9)), i * 10, j * 10));
-		
+
 		System.out.println(texts.size);
 	}
 
@@ -80,7 +80,7 @@ class TextPerfomenceTestApp implements ApplicationListener {
 		for (Text t : texts)
 			t.draw(batch);
 		batch.end();
-		
+
 		logger.log();
 	}
 
